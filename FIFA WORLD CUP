@@ -1,0 +1,134 @@
+print("Loading. ")
+print ("0%")
+from os import system, name
+def clear():
+ 
+    # for windows (Cringe pc)
+    if name == 'nt':
+        _ = system('cls')
+ 
+    # for mac and linux (Imagine not uwusing A self made OS made entirely using python L)
+    else:
+        _ = system('clear')
+clear()
+print("Loading..")
+print("25%")
+from scipy.stats import poisson
+clear()
+print("Loading..")
+print("50%")
+from operator import itemgetter
+clear()
+print("Loading..")
+print("75%")
+from time import sleep
+AveragePoints = [0, 0.33, 1.33, 1.66, 3, 1.66, 0.66, 0.33, 1.33, 0.66, 0.66, 1.33, 2, 1, 0.33, 0.33, 1, 2.66, 0.66, 0.33, 0.66, 1.33, 1.33, 0.33, 0.66, 1.33, 0.33, 1, 1, 1.66, 1.66, 0.33, 0]
+AverageSucks = [0, 1.33, 1, 1.33, 0.33, 0.66, 1.8, 0.33, 1.69, 0.66, 0.66, 1.66, 1, 1, 1.33, 0.33, 1, 0.33, 0.66, 1.8, 1, 0.33, 0.33, 0.66, 1.80, 0, 0.33, 1.33, 1.66, 0.66,1.66, 1, 0.66]
+#Nombre
+Teamignoreign = ["Nothing", "Qatar","Ecuador" , "Senegal", "Netherlands" , "England" , "Iran", "America", "Wales", "Poland", "Argentina", "Saudi Arabia", "Mexico", "France", "Australia", "Denmark", "Tunisia","Spain", "Japan", "Costa Rica", "Germany", "Morocco", "Croatia", "Belgium", "Canada", "Brazil", "Switzerland", "Cameroon", "Serbia", "Portugal", "Ghana", "Korea", "Uruguay"]
+#Home
+def predict_points():
+        clear()
+        home = input("Team 1 > ") 
+        HomeNumber=Teamignoreign.index(home)
+        HomePoints = itemgetter(HomeNumber)(AveragePoints)
+        HomeMongus = itemgetter(HomeNumber)(AverageSucks)
+        KenjiCode = 1
+#Away
+        Away = input("Team 2 > ") 
+        AwayNumber=Teamignoreign.index(Away)
+        AwayPoints = itemgetter(AwayNumber)(AveragePoints)
+        AwayMongus = itemgetter(AwayNumber)(AverageSucks)
+        #I Hate this code
+        #I hate ur grammur
+        #STFU
+        if (HomePoints == AwayPoints):
+          lamb_home = HomePoints - HomeMongus
+          lamb_away = AwayPoints - AwayMongus
+        elif ( HomeMongus > 1):
+          HomeMongus -= 1
+          lamb_home = HomePoints * HomeMongus
+          lamb_away = AwayPoints - AwayMongus
+        elif (1 < AwayMongus):
+          AwayMongus -= 1
+          lamb_home = HomePoints - HomeMongus
+          lamb_away = AwayPoints * AwayMongus
+        elif (AwayPoints > 1) and (1 < HomeMongus):
+          HomeMongus -=1
+          AwayMongus -=1
+          lamb_home = HomePoints * HomeMongus
+          lamb_away = AwayPoints * AwayMongus
+        elif (AwayPoints < AwayMongus):
+          lamb_away = AwayPoints * AwayMongus
+          lamb_home = HomePoints - HomeMongus
+        elif (HomePoints < HomeMongus):
+          lamb_away = AwayPoints - AwayMongus
+          lamb_home = HomePoints * HomeMongus
+        elif (HomePoints < HomeMongus)and (AwayPoints < AwayMongus):
+          lamb_away = AwayPoints - AwayMongus
+          lamb_home = HomePoints * HomeMongus
+        else:
+          lamb_home = HomePoints - HomeMongus
+          lamb_away = AwayPoints - AwayMongus
+        if (lamb_home < 0):
+          lamb_home = 0.2
+        elif (lamb_away < 0):
+          lamb_away = 0.2
+        prob_home, prob_away, prob_draw = 0, 0, 0
+        for x in range(0,11): #number of goals home team
+            for y in range(0, 11): #number of goals away team
+                p = poisson.pmf(x, lamb_home) * poisson.pmf(y, lamb_away)
+                if x == y:
+                    prob_draw += p
+                elif x > y:
+                    prob_home += p
+                else:
+                    prob_away += p
+        
+        points_home = 3 * prob_home + prob_draw
+        points_away = 3 * prob_away + prob_draw
+        print("And the winner is...")
+        if (points_home > points_away):
+          print(home)
+        elif (points_away > points_home):
+          print(Away)
+        else:
+          print("tie!")
+        q=round(points_home , 2)
+        numbergobrrr=round(points_away, 2)
+        print("Points")
+        print(f"first team expected points {q}")
+        print(f"Second team expected points {numbergobrrr}")
+        print(f"Raw data: {points_home} (points for team 1) {points_away} (points for Team 2)")
+        sleep(1)
+        y = input("Go agins? Y/N > ")
+        if y =="Y":
+          sleep(1)
+          predict_points()
+        else:
+          clear()
+          print("Wrong choice.")
+          sleep(1.5)
+          clear()
+          print("318276")
+          sleep(.5)
+          clear()
+          print("S18276")
+          sleep(.5)
+          clear()
+          print("So5619")
+          sleep(.5)
+          clear()
+          print("Soc427")
+          sleep(.5)
+          clear()
+          print("Socc40")
+          sleep(.5)
+          clear()
+          print("Socce1")
+          sleep(.5)
+          clear()
+          print("Soccer")
+          sleep(5)
+          predict_points()
+predict_points()
