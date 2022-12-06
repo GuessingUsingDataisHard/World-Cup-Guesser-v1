@@ -6,8 +6,6 @@ def clear():
     # for windows (Cringe pc)
     if name == 'nt':
         _ = system('cls')
- 
-    # for mac and linux (Imagine not uwusing A self made OS made entirely using python L)
     else:
         _ = system('clear')
 clear()
